@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang='en-US'>
+	<head>
+		<meta charset='UTF-8'>
+		<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+		<title>Weather App</title>
+		<link rel='stylesheet' href='/styles/style.css'>
+	</head>
+
+	<body>
+		<header>
+			<h1>Weather</h1>
+		</header>
+
+    <main>
+      <form action='/weather' method='POST'>
+        <input type='text' id='city-label' name='city' placeholder='' required value='<%= typeof city !== 'undefined' ? city : '' %>'>
+        <label for='city-label'>Enter City Name</label>
+        <button class='material-wrap' type='submit'>
+          <img class='material-icon' src='/icons/search.svg' title='Get Weather' alt='Get Weather'>
+        </button>
+      </form>
+  
+      <div class='card'>
+        <article class='upper-card'>
+          <h2 class='city'><%= weather ? `${weather.city}, ${weather.country}` : '--' %></h2>
+          <p class='now'>Now</p>
+        </article>
+
+        <div class='middle-card'>
+          <article>
+            <h2 class='temp'><%= weather ? weather.temp : '--' %>°</h2>
+            <p class='feels'>Feels like <%= weather ? weather.feels : '' %>°</p>
+          </article>
+            
+          <article class='sky'>
+            <% if (weather) { %>
+              <img class='icon' src='http://openweathermap.org/img/wn/<%= weather.icon %>@2x.png' alt='Weather icon' width='96' height='96'>
+            <% } else { %>
+              <img class='icon' src='/icons/cloudy.png' alt='Weather icon' width='96' height='96'>
+            <% } %>
+            <h3 class='icon-title'><%= weather ? weather.description : '--' %></h3>
+          </article>	
+        </div>
+
+        <div class='lower-card'>
+          <dl>
+            <div class='parameter row-divider'>
+              <dt class='thermometer'>High / Low</dt>
+              <dd><%= weather ? weather.high : '' %>° / <%= weather ? weather.low : '' %>°</dd>
+            </div>
+
+            <div class='parameter row-divider'>
+              <dt class='humidity'>Humidity</dt>
+              <dd><%= weather ? weather.humidity : '' %>%</dd>
+            </div>
+            
+            <div class='parameter row-divider'>
+              <dt class='pressure'>Pressure</dt>
+              <dd><%= weather ? weather.pressure : '' %> hPa</dd>
+            </div>
+
+            <div class='parameter'>
+              <dt class='wind'>Wind</dt>
+              <dd><%= weather ? weather.wind : '' %> km/h</dd>
+            </div>
+          </dl>
+
+          <% if (error) { %>
+            <p class='error'><%= error %></p>
+          <% } %>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p class='footer-p'>Weather &copy; <%= new Date().getFullYear() %>. 
+        Icons by <a href='https://fonts.google.com/icons' class='open-in-new' target='_blank'>Google Fonts</a>
+      </p>
+    </footer>
+	</body>
+</html>

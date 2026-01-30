@@ -1,0 +1,383 @@
+/* 1.0 || global settings */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+
+	padding: 0;
+	margin: 0;
+
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+:root {
+  --bg-main: linear-gradient(#dbd9e0, #fbf8ff 15%, #fbf8ff 85%, #dbd9e0);
+  --bg-input: hsla(251, 10%, 79%, 0.8);
+	--color: #46464f;
+}
+
+html {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+}
+
+
+/* 2.0 || body styles */
+
+body {
+	display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 100vh;
+	padding: 1rem;
+
+  background: var(--bg-main);
+
+  color: var(--color);
+}
+
+header {
+  margin-bottom: 4rem;
+}
+
+h1 {
+  letter-spacing: 1.5px;
+}
+
+h1::first-letter, 
+.footer-p::first-letter {
+  padding: 0 0.25rem;
+
+  background-color: #5b5d72;
+
+  color: #fff;
+}
+
+main {
+  flex: 1; /* flex item */
+
+  display: flex; /* flex container */
+  flex-direction: column;
+  justify-content: center; 
+  
+  width: 100%;
+  max-width: 400px;
+}
+
+
+/* 2.1 || form */
+
+form {
+  position: relative;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 2rem;
+}
+
+input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--bg-input);
+  border-radius: 2rem;
+
+  background: var(--bg-input);
+
+  font-size: 1rem;
+  
+  transition: background-color 0.2s ease, border 0.2s ease;
+}
+
+input:focus {
+  border: 2px solid #545a92;
+
+  background-color: hsla(251, 10%, 79%, 0.6);
+
+  outline: none;
+}
+
+input:user-invalid {
+	border: 2px solid #f4b042;
+}
+
+
+/* 2.1.1 || placeholder label */
+
+label { /* label looks like a placeholder */
+  position: absolute;
+  top: 0.75rem;
+  left: 1.5rem;
+  
+  color: hsla(240, 6%, 29%, 0.8);
+
+  pointer-events: none; /* allows clicks to pass through to the input */
+  transition: top 0.2s ease, left 0.2s ease, color 0.2s ease;
+}
+
+input:focus ~ label, /* when input is focused, style label */
+input:not(:placeholder-shown) ~ label { /* when input is not empty, style label */
+  top: -1.5rem;
+  left: 1.25rem;
+
+  color: #545a92;
+  font-weight: 600;
+}
+
+
+/* 2.1.2 || material design */
+
+.material-wrap {
+	display: flex;
+	justify-content: center;
+
+	padding: 0.25rem;
+	border: none;
+	border-radius: 50%;
+
+  background-color: #dfe0ff;
+
+  outline: none;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  -webkit-tap-highlight-color: transparent; /* for mobile devices */
+}
+
+.material-icon {
+	width: 2.5rem;
+	height: 2.5rem;
+	
+	cursor: pointer;
+}
+
+.material-wrap:focus,
+.material-wrap:hover {
+  background-color: hsla(238, 100%, 94%, 0.5);
+  box-shadow: 0 2px 4px #74777f;
+
+  backdrop-filter: blur(12px);
+  transform: translateY(-2px);
+}
+
+.material-wrap:active {
+  background-color: hsla(0, 0%, 100%, 0);
+  box-shadow: none;
+
+  transform: translateY(0);
+}
+
+
+/* 2.2 || weather card */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  max-width: 400px;
+  border-radius: 1rem;
+}
+
+
+/* 2.2.1 || weather card || upper card */
+
+.upper-card {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 1rem 2rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+
+  background-color: #545a92;
+
+  color: #ffffff;
+}
+
+.city {
+  font-weight: 500;
+}
+
+
+/* 2.2.2 || weather card || middle card */
+
+.middle-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 1.5rem 2rem;
+
+  background-color: #dfe0ff;
+
+  color: #3c4279;
+}
+
+.temp {
+  font-size: 3rem;
+}
+
+.sky {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  transform: translateX(20px);
+}
+
+.icon {
+  width: 96px;
+  height: 96px;
+
+  filter: contrast(150%);
+}
+
+.icon-title {
+  transform: translateY(-20px);
+}
+
+
+/* 2.2.3 || weather card || lower card */
+
+.lower-card {
+  position: relative;
+
+  width: 100%;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+
+  background-color: #46464ecc;
+  background-color: hsla(235, 11%, 40%, 0.1);
+}
+
+.parameter {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 1rem 0;
+  margin: 0 2rem;
+}
+
+dt {
+  font-weight: 600;
+}
+
+.row-divider {
+  border-bottom: 1px solid hsla(246, 4%, 48%, 0.3);
+}
+
+.thermometer::before {
+  display: inline-block;
+  vertical-align: -6px;
+
+  width: 24px;
+  height: 24px;
+  margin-right: 0.5rem;
+
+  background: url('../icons/thermometer.svg');
+
+  content: '';
+}
+
+.humidity::before {
+  display: inline-block;
+  vertical-align: -6px;
+
+  width: 24px;
+  height: 24px;
+  margin-right: 0.5rem;
+
+  background: url('../icons/humidity.svg');
+
+  content: '';
+}
+
+.pressure::before {
+  display: inline-block;
+  vertical-align: -6px;
+
+  width: 24px;
+  height: 24px;
+  margin-right: 0.5rem;
+
+  background: url('../icons/pressure.svg');
+
+  content: '';
+}
+
+.wind::before {
+  display: inline-block;
+  vertical-align: -6px;
+
+  width: 24px;
+  height: 24px;
+  margin-right: 0.5rem;
+
+  background: url('../icons/wind.svg');
+
+  content: '';
+}
+
+
+/* 3.0 || footer */
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 4rem;
+}
+
+.open-in-new {
+  text-decoration: underline;
+}
+
+.open-in-new:focus,
+.open-in-new:hover {
+  text-decoration: none;
+}
+
+.open-in-new::after {
+  display: inline-block;
+  vertical-align: text-bottom;
+  
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: 0.1rem;
+
+  background-size: 100%;
+  background-image: url('../icons/open-in-new.svg');
+
+  content: '';
+}
+
+
+/* 4.0 || error */
+
+.error {
+  position: absolute;
+
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+
+  background-color: #ffdad6;
+  
+  color: #93000a;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* material theme builder: #1E35EE */
