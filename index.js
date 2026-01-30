@@ -32,7 +32,7 @@ app.get('/', async (req, res) => {
 
 app.post('/weather', async (req, res) => {
 
-	const city = req.body.city;
+	const city = req.body.city.replace(/\s+/g, ' ').trim(); // get the city name from the form submission and trim whitespace
 
 	try {
 		const response = await axios.get(`${API_URL}?q=${city}&appid=${API_KEY}&units=metric`); // make a GET request to the API
