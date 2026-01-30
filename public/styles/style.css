@@ -110,13 +110,14 @@ input:user-invalid {
 
 label { /* label looks like a placeholder */
   position: absolute;
-  top: 0.75rem;
+  top: 50%;
   left: 1.5rem;
   
   color: hsla(240, 6%, 29%, 0.8);
 
   pointer-events: none; /* allows clicks to pass through to the input */
-  transition: top 0.2s ease, left 0.2s ease, color 0.2s ease;
+  transform: translateY(-50%); /* center label vertically */
+  transition: top 0.2s ease, left 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 input:focus ~ label, /* when input is focused, style label */
@@ -126,6 +127,8 @@ input:not(:placeholder-shown) ~ label { /* when input is not empty, style label 
 
   color: #545a92;
   font-weight: 600;
+
+  transform: translateY(0);
 }
 
 
@@ -331,11 +334,10 @@ dt {
 /* 3.0 || footer */
 
 footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
+  width: 100%;
   margin-top: 4rem;
+  
+  text-align: center;
 }
 
 .open-in-new {
