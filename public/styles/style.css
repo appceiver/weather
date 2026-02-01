@@ -114,18 +114,20 @@ label { /* label looks like a placeholder */
   left: 1.5rem;
   
   color: hsla(240, 6%, 29%, 0.8);
+  line-height: 1;
 
   pointer-events: none; /* allows clicks to pass through to the input */
   transform: translateY(-50%); /* center label vertically */
-  transition: top 0.2s ease, left 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  transition: top 0.2s ease, left 0.2s ease, color 0.2s ease, font 0.2s ease, transform 0.2s ease;
 }
 
 input:focus ~ label, /* when input is focused, style label */
 input:not(:placeholder-shown) ~ label { /* when input is not empty, style label */
-  top: -1.5rem;
+  top: -1rem;
   left: 1.25rem;
 
-  color: #545a92;
+  color: #6b0082;
+  font-size: 0.75rem;
   font-weight: 600;
 
   transform: translateY(0);
@@ -258,12 +260,12 @@ input:not(:placeholder-shown) ~ label { /* when input is not empty, style label 
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
 
-  background-color: #46464ecc;
   background-color: hsla(235, 11%, 40%, 0.1);
 }
 
 .parameter {
   display: flex;
+  align-items: center;
   justify-content: space-between;
 
   padding: 1rem 0;
@@ -271,7 +273,26 @@ input:not(:placeholder-shown) ~ label { /* when input is not empty, style label 
 }
 
 dt {
+  display: flex;
+  align-items: center;
+
   font-weight: 600;
+  line-height: 1;
+}
+
+dt::before {
+  flex-shrink: 0;
+
+  content: '';
+  display: inline-block;
+
+  width: 24px;
+  height: 24px;
+  margin-right: 0.8rem;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 
 .row-divider {
@@ -279,55 +300,26 @@ dt {
 }
 
 .thermometer::before {
-  display: inline-block;
-  vertical-align: -6px;
-
-  width: 24px;
-  height: 24px;
-  margin-right: 0.5rem;
-
-  background: url('../icons/thermometer.svg');
-
-  content: '';
+  background-image: url('../icons/thermometer.svg');
 }
 
 .humidity::before {
-  display: inline-block;
-  vertical-align: -6px;
-
-  width: 24px;
-  height: 24px;
-  margin-right: 0.5rem;
-
-  background: url('../icons/humidity.svg');
-
-  content: '';
+  background-image: url('../icons/humidity.svg');
 }
 
 .pressure::before {
-  display: inline-block;
-  vertical-align: -6px;
-
-  width: 24px;
-  height: 24px;
-  margin-right: 0.5rem;
-
-  background: url('../icons/pressure.svg');
-
-  content: '';
+  background-image: url('../icons/pressure.svg');
 }
 
 .wind::before {
-  display: inline-block;
-  vertical-align: -6px;
+  background-image: url('../icons/wind.svg');
+}
 
-  width: 24px;
-  height: 24px;
-  margin-right: 0.5rem;
+dd {
+  display: flex;
+  align-items: center;
 
-  background: url('../icons/wind.svg');
-
-  content: '';
+  line-height: 1;
 }
 
 
@@ -336,7 +328,6 @@ dt {
 footer {
   width: 100%;
   margin-top: 4rem;
-  
   text-align: center;
 }
 
